@@ -1,6 +1,6 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { FC, useCallback } from "react";
+import { cn, getRandomDigits, sleep } from "@/lib/utils";
+import { FC, useCallback, useEffect, useState } from "react";
 import { OUTLINED_STYLES } from "./constants";
 import { IOutlinedProps } from "./types";
 import { SmartLockButton } from "./smart-lock-button";
@@ -10,17 +10,48 @@ import {
   DashedBorderOut,
 } from "@/components/icons/dashed-border";
 import * as motion from "framer-motion/client";
-import { useIotDeviceStore } from "@/store/iot-device-store";
+import {
+  LIGHT_DURATION,
+  LIGHTS_COUNT,
+  MAX_PIN_LENGTH,
+  useIotDeviceStore,
+} from "@/store/iot-device-store";
 
-export const SmartLockDevice: FC<IOutlinedProps> = ({
-  outlined,
-  classname,
-}) => {
+const INPUT_ANIMATION_DELAY = 700;
+
+export const SmartLockDevice: FC<
+  IOutlinedProps & { autoAnimated?: boolean }
+> = ({ outlined, classname, autoAnimated }) => {
   const iotStore = useIotDeviceStore();
+  const [isRandomCode, setIsRandomCode] = useState(false);
 
-  const checkPin = useCallback(() => {
-    iotStore.validateAccessCodeInput("1407");
-  }, [iotStore]);
+  const simulatePinCodeFlow = useCallback(async () => {
+    const passcode = isRandomCode
+      ? getRandomDigits(MAX_PIN_LENGTH)
+      : iotStore.pinCode;
+    for (let i = 0; i < MAX_PIN_LENGTH; i++) {
+      iotStore.pressKey(Number(passcode[i]));
+      await sleep(700);
+    }
+    iotStore.validateAccessCodeInput();
+  }, [iotStore, isRandomCode]);
+
+  useEffect(() => {
+    if (autoAnimated) {
+      const interval = setInterval(
+        async () => {
+          await simulatePinCodeFlow();
+          setIsRandomCode((prev) => !prev);
+        },
+        // Animation duration (digits input time + result lights duration + extra 1s)
+        INPUT_ANIMATION_DELAY * MAX_PIN_LENGTH +
+          LIGHT_DURATION * LIGHTS_COUNT +
+          800,
+      );
+
+      return () => clearTimeout(interval);
+    }
+  }, [autoAnimated, simulatePinCodeFlow]);
 
   return (
     <motion.div
@@ -50,7 +81,9 @@ export const SmartLockDevice: FC<IOutlinedProps> = ({
                 key={num}
                 outlined={outlined}
                 status={iotStore.keyStatus[num]}
-                onClick={() => iotStore.pressKey(num)}
+                onClick={() => {
+                  if (!autoAnimated) iotStore.pressKey(num);
+                }}
               >
                 {num}
               </SmartLockButton>
@@ -61,11 +94,18 @@ export const SmartLockDevice: FC<IOutlinedProps> = ({
             <SmartLockButton
               outlined={outlined}
               status={iotStore.keyStatus[0]}
-              onClick={() => iotStore.pressKey(0)}
+              onClick={() => {
+                if (!autoAnimated) iotStore.pressKey(0);
+              }}
             >
               0
             </SmartLockButton>
-            <SmartLockButton outlined={outlined} onClick={checkPin}>
+            <SmartLockButton
+              outlined={outlined}
+              onClick={() => {
+                if (!autoAnimated) iotStore.validateAccessCodeInput();
+              }}
+            >
               ✓
             </SmartLockButton>
           </div>

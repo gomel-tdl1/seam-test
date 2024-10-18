@@ -141,10 +141,10 @@ export const DashedBorderButton = (props: HTMLAttributes<SVGSVGElement>) => (
         height="56"
         rx="28"
         stroke="#B5B5BF"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-dasharray="4 4"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeDasharray="4 4"
       />
     </g>
     <defs>

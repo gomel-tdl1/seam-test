@@ -1,5 +1,7 @@
 "use client";
+import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
+import { useIotDeviceStore } from "@/store/iot-device-store";
 import { FC, HTMLAttributes } from "react";
 import { useScramble } from "use-scramble";
 
@@ -30,6 +32,8 @@ const HashLine: FC<HTMLAttributes<HTMLParagraphElement> & { text: string }> = ({
 };
 
 export const HashesMarketingSection = () => {
+  const iotStore = useIotDeviceStore();
+
   return (
     <div className="relative">
       {/* Vertical lines below */}
@@ -52,10 +56,28 @@ export const HashesMarketingSection = () => {
         />
         <div /> {/* Empty grid slot */}
         <div /> {/* Empty grid slot */}
-        <div className="p-20">
+        <div className="lg:p-20 px-6 py-10">
           <p className="text-typography-light text-[16px] font-[500] leading-[22px] -tracking-[0.32px]">
             Some content here...
           </p>
+          <div className="flex flex-row-reverse items-center justify-end gap-2 my-2">
+            <p className="text-typography-light text-[16px] font-[500] leading-[22px] -tracking-[0.32px]">
+              IoT auto-animation
+            </p>
+            <Switch
+              checked={iotStore.autoAnimated}
+              onClick={() => iotStore.toggleAutoAnimated()}
+            />
+          </div>
+          <div className="flex flex-row-reverse items-center justify-end gap-2">
+            <p className="text-typography-light text-[16px] font-[500] leading-[22px] -tracking-[0.32px]">
+              IoT outlined
+            </p>
+            <Switch
+              checked={iotStore.outlined}
+              onClick={() => iotStore.toggleOutlined()}
+            />
+          </div>
         </div>
       </div>
     </div>
