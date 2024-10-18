@@ -47,12 +47,12 @@ export const HashesMarketingSection = () => {
         />
         <HashLine
           className="col-span-2"
-          text="mRPzMrBW45hVRMDJCbmwpk9mGTkLGubnYev1eiRZ5TvUbf6RyuTkbuFGUiuBpffBfwxXrwBfXKJXeHVHE9qjPaeqzJzZZPFqkVTj"
+          text="gB1AqU28p1ftcjderiYjpZa5eitTwQoQP9WisQ2Jzm5NMRhbfw2vdfv5BF1EjxTPJxFpU6j09J7ZHehjxGDKB9yZWZ1qYaVGqLfd"
         />
         <div /> {/* Empty grid slot */}
         <HashLine
           className="col-span-1"
-          text="mRPzMrBW45hVRMDJCbmwpk9mGTkLGubnYev1eiRZ5TvUbf6RyuTkbuFGUiuBpffBfwxXrwBfXKJXeHVHE9qjPaeqzJzZZPFqkVTj"
+          text="oxgxErXgpXZED9aeVXNmThkGaeHpm0zsb6mQNPCChMJPiRq3qQP9ewG5ZdRd2UVaeVzrYf6VywnpYET0pnjbTEbEa2Ly14isgDX4"
         />
         <div /> {/* Empty grid slot */}
         <div /> {/* Empty grid slot */}
