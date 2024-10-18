@@ -20,7 +20,7 @@ export default function RootLayout({
           interFont.className,
           geistSansFont.variable,
           geistMonoFont.variable,
-          "antialiased",
+          "antialiased bg-background",
         )}
       >
         {children}

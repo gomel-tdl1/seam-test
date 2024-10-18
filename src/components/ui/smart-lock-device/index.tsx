@@ -12,11 +12,14 @@ import {
 import * as motion from "framer-motion/client";
 import { useIotDeviceStore } from "@/store/iot-device-store";
 
-export const SmartLockDevice: FC<IOutlinedProps> = ({ outlined }) => {
+export const SmartLockDevice: FC<IOutlinedProps> = ({
+  outlined,
+  classname,
+}) => {
   const iotStore = useIotDeviceStore();
 
   const checkPin = useCallback(() => {
-    iotStore.checkPin("1231");
+    iotStore.validateAccessCodeInput("1407");
   }, [iotStore]);
 
   return (
@@ -25,6 +28,7 @@ export const SmartLockDevice: FC<IOutlinedProps> = ({ outlined }) => {
       animate={{ opacity: 1 }}
       transition={{ ease: "easeInOut", duration: 1 }}
       className={cn(
+        classname,
         "h-[432px] w-[264px] rounded-[60px] p-2 transition-all relative",
         outlined ? OUTLINED_STYLES : "bg-smartlock-outline shadow-inner",
       )}

@@ -8,6 +8,14 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      screens: {
+        sm: '320px',
+        md: '640px',
+        lg: '1200px',
+        xl: '1500px',
+      },
+    },
     extend: {
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
@@ -17,8 +25,16 @@ const config: Config = {
         "button": "4px 4px 8px #36363F"
       },
       colors: {
+        background: "#FBFBFB",
+        typography: {
+          dark: "#353642",
+          hover: "#4C4C5D",
+          light: "#6A6B82",
+          lightest: "#ffffff"
+        },
         grey: {
           dark: "#96969f",
+          middle: "#9E9EB4",
           light: "#E0E0E5"
         },
         green: {

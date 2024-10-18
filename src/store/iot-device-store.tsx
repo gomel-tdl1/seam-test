@@ -13,7 +13,7 @@ interface State {
 
 interface Action {
   pressKey: (keyNum: number) => void;
-  checkPin: (pin: string) => void;
+  validateAccessCodeInput: (pin: string) => void;
   reset: () => void;
 }
 
@@ -36,7 +36,7 @@ export const useIotDeviceStore = create<State & Action>((set, getState) => ({
         keyStatus: { ...state.keyStatus, [keyNum]: BUTTON_STATUSES.PRESSED },
       };
     }),
-  checkPin: async (pin) => {
+  validateAccessCodeInput: async (pin) => {
     const state = getState();
     const resultStatus =
       state.pinInput === pin ? BUTTON_STATUSES.GREEN : BUTTON_STATUSES.RED;
@@ -50,15 +50,8 @@ export const useIotDeviceStore = create<State & Action>((set, getState) => ({
         ),
       }));
       await sleep(LIGHT_DURATION);
-      set(() => ({
-        keyStatus: Object.fromEntries(
-          Array.from({ length: 10 })
-            .keys()
-            .map((num) => [num, BUTTON_STATUSES.IDLE]),
-        ),
-      }));
+      state.reset();
     }
-    state.reset();
   },
   reset: () => set(() => initialState),
 }));
