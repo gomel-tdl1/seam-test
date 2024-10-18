@@ -37,7 +37,7 @@ export const HashesMarketingSection = () => {
   return (
     <div className="relative">
       {/* Vertical lines below */}
-      <div className="absolute top-0 lg:right-[131px right-[23px] border-l-[1px] border-dashed border-grey-dark h-full" />
+      <div className="absolute top-0 lg:right-[131px] right-[23px] border-l-[1px] border-dashed border-grey-dark h-full" />
       <div className="absolute top-0 lg:right-[263px] right-[47px] border-l-[1px] border-dashed border-grey-dark h-full" />
 
       <div className="relative grid lg:grid-cols-[1fr_132px_132px] grid-cols-[1fr_24px_24px] gap-y-2">
