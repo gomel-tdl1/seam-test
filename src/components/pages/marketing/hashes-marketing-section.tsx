@@ -37,10 +37,10 @@ export const HashesMarketingSection = () => {
   return (
     <div className="relative">
       {/* Vertical lines below */}
-      <div className="absolute top-0 lg:right-[131px] right-[23px] border-l-[1px] border-dashed border-grey-dark h-full" />
-      <div className="absolute top-0 lg:right-[263px] right-[47px] border-l-[1px] border-dashed border-grey-dark h-full" />
+      <div className="absolute top-0 md:right-[131px] right-[23px] border-l-[1px] border-dashed border-grey-dark h-full" />
+      <div className="absolute top-0 md:right-[263px] right-[47px] border-l-[1px] border-dashed border-grey-dark h-full" />
 
-      <div className="relative grid lg:grid-cols-[1fr_132px_132px] grid-cols-[1fr_24px_24px] gap-y-2">
+      <div className="relative grid md:grid-cols-[1fr_132px_132px] grid-cols-[1fr_24px_24px] gap-y-2">
         <HashLine
           className="col-span-3"
           text="mRPzMrBW45hVRMDJCbmwpk9mGTkLGubnYev1eiRZ5TvUbf6RyuTkbuFGUiuBpffBfwxXrwBfXKJXeHVHE9qjPaeqzJzZZPFqkVTj"
@@ -56,7 +56,7 @@ export const HashesMarketingSection = () => {
         />
         <div /> {/* Empty grid slot */}
         <div /> {/* Empty grid slot */}
-        <div className="lg:p-20 px-6 py-10">
+        <div className="md:p-20 px-6 py-10">
           <p className="text-typography-light text-[16px] font-[500] leading-[22px] -tracking-[0.32px]">
             Some content here...
           </p>

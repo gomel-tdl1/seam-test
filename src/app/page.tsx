@@ -4,7 +4,7 @@ import { MainMarketingSection } from "@/components/pages/marketing/main-marketin
 
 export default function Home() {
   return (
-    <div className="mx-auto min-h-screen lg:max-w-[804px] max-w-[95%] border-x-[1px] border-dashed border-grey-dark lg:pt-[182px] pt-[91px]">
+    <div className="mx-auto min-h-screen md:max-w-[804px] max-w-[95%] border-x-[1px] border-dashed border-grey-dark md:pt-[182px] pt-[91px]">
       <MainMarketingSection />
       <DescriptionMarketingSection />
       <HashesMarketingSection />
