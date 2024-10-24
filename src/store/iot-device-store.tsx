@@ -28,9 +28,10 @@ const initialState: State = {
   autoAnimated: true,
   pinInput: "",
   keyStatus: Object.fromEntries(
-    Array.from({ length: 10 })
-      .keys()
-      .map((num) => [num, BUTTON_STATUSES.IDLE]),
+    Array.from({ length: 10 }, (_, i) => i).map((num) => [
+      num,
+      BUTTON_STATUSES.IDLE,
+    ]),
   ),
 };
 
@@ -54,9 +55,10 @@ export const useIotDeviceStore = create<State & Action>((set, getState) => ({
       await sleep(LIGHT_DURATION);
       set(() => ({
         keyStatus: Object.fromEntries(
-          Array.from({ length: 10 })
-            .keys()
-            .map((num) => [num, resultStatus]),
+          Array.from({ length: 10 }, (_, i) => i).map((num) => [
+            num,
+            resultStatus,
+          ]),
         ),
       }));
       await sleep(LIGHT_DURATION);
